@@ -54,18 +54,19 @@ namespace MyFirstVS
 
             //Identify code textbox and enter value
             IWebElement codeTextBox = driver.FindElement(By.Id("Code"));
-            codeTextBox.SendKeys("Code01");
+            codeTextBox.SendKeys("myCode01");
 
             //Identify description Text box and enter the value
             IWebElement descriptionTextBox = driver.FindElement(By.Id("Description"));
             descriptionTextBox.SendKeys("Material01");
 
-            //Identify Price text box and enter the value
+
+            //Identify Price text box and enter the value      
+            IWebElement priceTextBoxLabel = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span"));
+            priceTextBoxLabel.Click(); //PriceTextbox Overlapping
             IWebElement priceTextBox = driver.FindElement(By.Id("Price"));
-            //PriceTextbox Overlapping
-            IWebElement priceTextBoxone = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/label"));
-            priceTextBoxone.Click();
-            //priceTextBox.SendKeys("555");
+            priceTextBox.Click();
+            priceTextBox.SendKeys("555");
 
             //Identify save button and click
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
@@ -78,16 +79,74 @@ namespace MyFirstVS
             lastPage.Click();
 
             //2.Checking the record is present
-            IWebElement lastRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            IWebElement lastRecordFound = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (lastRecord.Text == "Code01")
+            if (lastRecordFound.Text == "myCode01")
             {
+
                 Console.WriteLine("Material Record created successfully,Test Passed");
+
             }
             else
             {
+
                 Console.WriteLine("Record not created ,Test failed");
+
+              
             }
+
+            //Edit Button
+            IWebElement editButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+            editButton.Click();
+
+            //Edit current Code
+            IWebElement editcode = driver.FindElement(By.Id("Code"));
+            editcode.Clear();
+            editcode.SendKeys("editcode01");
+            
+            //Edit Current Description
+            IWebElement editDescription = driver.FindElement(By.Id("Description"));
+            
+            editDescription.Clear();
+            editDescription.SendKeys("EditDescrption01");
+            Thread.Sleep(2000);
+
+            //Editing current Price
+
+            IWebElement editpriceTextBoxLabel = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span"));
+            IWebElement editpriceBox = driver.FindElement(By.Id("Price"));
+            
+            editpriceTextBoxLabel.Click();
+            editpriceBox.Clear();
+            editpriceTextBoxLabel.Click();
+            editpriceBox.SendKeys("500");
+
+            //Find save button and click
+            IWebElement editsaveButton = driver.FindElement(By.Id("SaveButton"));
+            editsaveButton.Click();
+            Thread.Sleep(2000);
+
+            //Checking for edited and updated record
+            //1.Click on to the last page button
+            IWebElement editedlastPage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            editedlastPage.Click();
+
+            // 2.Checking the edited record is present
+            IWebElement editedlastRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+
+           if (editedlastRecord.Text == "editcode01")
+           {
+              Console.WriteLine("Material Record Edited successfully,Test Passed");
+           }
+           else
+           {
+              Console.WriteLine(" Edit Record not created ,Test failed");
+
+           }
+           
+
+
+
 
 
 
