@@ -80,6 +80,7 @@ namespace MyFirstVS
 
             //2.Checking the record is present
             IWebElement lastRecordFound = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            Thread.Sleep(3000);
 
             if (lastRecordFound.Text == "myCode01")
             {
@@ -143,9 +144,33 @@ namespace MyFirstVS
               Console.WriteLine(" Edit Record not created ,Test failed");
 
            }
-           
+            //Delete Button
 
+            //findlast page button and click
+            IWebElement lastPagebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            lastPagebutton.Click();
 
+            //Finding Last record delete button
+            IWebElement lastdeletebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+            lastdeletebutton.Click();
+
+            //Switching to Alert
+          driver.SwitchTo().Alert().Accept();
+
+            //Checking if the record is deleted
+            IWebElement lastPagego = driver.FindElement((By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")));
+            lastPagego.Click();
+            Thread.Sleep(2000);
+            IWebElement checkLastRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[4]/td[1]"));
+
+            if (checkLastRecord.Text == "editcode01")
+            {
+                Console.WriteLine("Record not deleted ,Test failed");
+            }
+            else
+            {
+                Console.WriteLine("Record Deleted,Test Passed");
+            }
 
 
 
