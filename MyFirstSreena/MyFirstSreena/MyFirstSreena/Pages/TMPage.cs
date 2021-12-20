@@ -1,50 +1,16 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MyFirstVS
+namespace MyFirstSreena.Pages
 {
-    class Program
-    {
-        static void Main(string[] args)
+   public class TM_Page
+   {
+        public void CreateTM(IWebDriver driver)
         {
-            // To Open a New Chrome Browser 
-            IWebDriver driver = new ChromeDriver();
-
-            //To maximise the  Chrome browser
-            driver.Manage().Window.Maximize();
-
-            // To navigate to the URL
-            driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
-
-            //identify the textbox usernmname and enter valid username
-            IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
-            usernameTextbox.SendKeys("hari");
-
-            //Identify password textbox  and enter valid password
-            IWebElement password = driver.FindElement(By.Id("Password"));
-            password.SendKeys("123123");
-
-            //Click on LoginButton
-            IWebElement loginButton = driver.FindElement(By.XPath("//*[@id='loginForm']/form/div[3]/input[1]"));
-            loginButton.Click();
-
-            //Checking whether user logged in successfully
-            IWebElement helloUser = driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
-            if (helloUser.Text == "Hello hari!")
-            {
-                Console.WriteLine("Logged in Succesfully,Test Passed");
-            }
-            else
-            {
-                Console.WriteLine("Login Failed,Test Failed");
-            }
-            //time  and Material
-            IWebElement adminstrationDropdown = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
-            adminstrationDropdown.Click();
-            IWebElement timeMaterialOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
-            timeMaterialOption.Click();
-
             //Create NEW button
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
             createNewButton.Click();
@@ -93,21 +59,25 @@ namespace MyFirstVS
 
                 Console.WriteLine("Record not created ,Test failed");
 
-              
+
             }
 
-            //Edit Button
-            IWebElement editButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+        }
+
+        public void EditTM(IWebDriver driver)
+        {
+            // Edit Button
+             IWebElement editButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
             editButton.Click();
 
             //Edit current Code
             IWebElement editcode = driver.FindElement(By.Id("Code"));
             editcode.Clear();
             editcode.SendKeys("editcode01");
-            
+
             //Edit Current Description
             IWebElement editDescription = driver.FindElement(By.Id("Description"));
-            
+
             editDescription.Clear();
             editDescription.SendKeys("EditDescrption01");
             Thread.Sleep(2000);
@@ -116,7 +86,7 @@ namespace MyFirstVS
 
             IWebElement editpriceTextBoxLabel = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span"));
             IWebElement editpriceBox = driver.FindElement(By.Id("Price"));
-            
+
             editpriceTextBoxLabel.Click();
             editpriceBox.Clear();
             editpriceTextBoxLabel.Click();
@@ -135,15 +105,20 @@ namespace MyFirstVS
             // 2.Checking the edited record is present
             IWebElement editedlastRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-           if (editedlastRecord.Text == "editcode01")
-           {
-              Console.WriteLine("Material Record Edited successfully,Test Passed");
-           }
-           else
-           {
-              Console.WriteLine(" Edit Record not created ,Test failed");
+            if (editedlastRecord.Text == "editcode01")
+            {
+                Console.WriteLine("Material Record Edited successfully,Test Passed");
+            }
+            else
+            {
+                Console.WriteLine(" Edit Record not created ,Test failed");
 
-           }
+            }
+
+        }
+
+        public void DeleteTM(IWebDriver driver)
+        {
             //Delete Button
 
             //findlast page button and click
@@ -155,7 +130,7 @@ namespace MyFirstVS
             lastdeletebutton.Click();
 
             //Switching to Alert
-          driver.SwitchTo().Alert().Accept();
+            driver.SwitchTo().Alert().Accept();
 
             //Checking if the record is deleted
             IWebElement lastPagego = driver.FindElement((By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")));
@@ -172,12 +147,6 @@ namespace MyFirstVS
                 Console.WriteLine("Record Deleted,Test Passed");
             }
 
-
-
-
-
-
-
         }
-    }
+   }
 }
