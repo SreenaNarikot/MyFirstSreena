@@ -26,14 +26,14 @@ namespace MyFirstVS
             homePage.GoToTMPage(driver);
 
         }
-        [Test, Order(1)]
+        [Test, Order(1), Description("Check if the user is able to create material record with valid data")]
         public void CreateTM_Test()
         {
             //TM Page object initialization and definition
             TM_Page tmPage = new TM_Page();
             tmPage.CreateTM(driver);
         }
-        [Test, Order(2)]
+        [Test, Order(2), Description("Check if the user is able to edit material record with valid data")]
         public void EditTM_Test()
         {
             //TM Page Edit
@@ -41,7 +41,7 @@ namespace MyFirstVS
             tmPage.EditTM(driver);
 
         }
-        [Test, Order(3)]
+        [Test, Order(3), Description("Check if the user is able to delete the edited  materialrecord")]
         public void DeleteTM_Test()
         {
             //TM delete

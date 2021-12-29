@@ -13,7 +13,7 @@ namespace MyFirstSreena.Pages
     {
         public void CreateTM(IWebDriver driver)
         {
-            //Create NEW button
+            // find the element Create NEW button and click
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
             createNewButton.Click();
             //Select material from tycode dropdown
