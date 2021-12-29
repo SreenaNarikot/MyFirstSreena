@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +20,28 @@ namespace MyFirstSreena.Pages
             // To navigate to the URL
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
 
-            //identify the textbox usernmname and enter valid username
-            IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
-            usernameTextbox.SendKeys("hari");
+            try
+            {
+                //identify the textbox usernmname and enter valid username
+                IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
+                usernameTextbox.SendKeys("hari");
 
-            //Identify password textbox  and enter valid password
-            IWebElement password = driver.FindElement(By.Id("Password"));
-            password.SendKeys("123123");
+                //Identify password textbox  and enter valid password
+                IWebElement password = driver.FindElement(By.Id("Password"));
+                password.SendKeys("123123");
 
-            //Click on LoginButton
-            IWebElement loginButton = driver.FindElement(By.XPath("//*[@id='loginForm']/form/div[3]/input[1]"));
-            loginButton.Click();
+                //Click on LoginButton
+                IWebElement loginButton = driver.FindElement(By.XPath("//*[@id='loginForm']/form/div[3]/input[1]"));
+                loginButton.Click();
+
+
+            }
+            catch(Exception ex)
+            {
+                Assert.Fail("TurnUP Portal login page did not lauch",ex.Message);
+            }
+
+
 
         }
 
