@@ -20,6 +20,16 @@ namespace MyFirstSreena.Pages
             IWebElement timeMaterialOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             timeMaterialOption.Click();
         }
+        public void GoToEmployeePage(IWebDriver driver)
+        {
+            IWebElement adminstrationDropdown = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            adminstrationDropdown.Click();
+            Wait.WaitToBeClickable(driver, "Xpath", "/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a", 5);
+
+            IWebElement EmployeeOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a"));
+            EmployeeOption.Click();
+            
+        }
 
     }
 }

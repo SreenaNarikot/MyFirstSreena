@@ -46,7 +46,7 @@ namespace MyFirstSreena.Pages
             IWebElement lastPage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             lastPage.Click();
 
-            //2.Checking the record is present
+            //2.identifying the  last record
             IWebElement lastCodeFound = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             Thread.Sleep(3000);
 
@@ -147,7 +147,7 @@ namespace MyFirstSreena.Pages
             else
             {
                 //Console.WriteLine(" Edit Record not created ,Test failed");
-                Assert.Fail(" Edit Record not created ,Test failed");
+                Assert.Fail(" Material record not edited ,Test failed");
 
             }
 
