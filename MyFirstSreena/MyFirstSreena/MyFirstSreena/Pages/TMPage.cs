@@ -51,7 +51,7 @@ namespace MyFirstSreena.Pages
             Thread.Sleep(3000);
 
             //option 1
-            Assert.That(lastCodeFound.Text == "myCode01", "The Code do not match");
+            //Assert.That(lastCodeFound.Text == "myCode01", "The Code do not match");
 
             ////Option 2
             //if (lastCodeFound.Text == "myCode01")
@@ -71,6 +71,12 @@ namespace MyFirstSreena.Pages
             //}
 
         }
+        public string GetCode(IWebDriver driver)
+        {
+            Thread.Sleep(3000);
+            IWebElement lastCodeFound = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return lastCodeFound.Text;
+        }
 
       
         public void EditTM(IWebDriver driver)
@@ -80,10 +86,10 @@ namespace MyFirstSreena.Pages
             //Click and go to last page
             IWebElement lastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
             lastPageButton.Click();
-
+            Thread.Sleep(3000);
             IWebElement lastCodeToEdit= driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-
-            if(lastCodeToEdit.Text == "myCode01")
+            Console.WriteLine(lastCodeToEdit.Text);
+            if (lastCodeToEdit.Text == "myCode01")
             {
                 // Edit Button
                 IWebElement editButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
@@ -150,7 +156,11 @@ namespace MyFirstSreena.Pages
                 Assert.Fail(" Material record not edited ,Test failed");
 
             }
-
+        }
+        public string GetEditedCode(IWebDriver driver)
+        {
+            IWebElement editedlastCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return editedlastCode.Text;
         }
 
         public void DeleteTM(IWebDriver driver)
@@ -162,23 +172,24 @@ namespace MyFirstSreena.Pages
             IWebElement lastPagebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
             lastPagebutton.Click();
 
-            //Find the edited Record
-            IWebElement findEditedRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            ////Find the edited Record
+            //Thread.Sleep(2000);
+            //IWebElement findEditedRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if(findEditedRecord.Text == "editcode01")
-            {
-                //Finding delete button of last Record
-                IWebElement lastdeletebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
-                lastdeletebutton.Click();
+            //if(findEditedRecord.Text == "editcode01")
+            //{
+            //    //Finding delete button of last Record
+               IWebElement lastdeletebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+               lastdeletebutton.Click();
 
 
-                //Switching to Alert
+            //    //Switching to Alert
                 driver.SwitchTo().Alert().Accept();
-            }
-            else
-            {
-                Assert.Fail("Record to delete not found");
-            }
+            //}
+            //else
+            //{
+            //    Assert.Fail("Record to delete not found");
+            //}
 
             
 
@@ -188,25 +199,11 @@ namespace MyFirstSreena.Pages
             lastPagego.Click();
             Thread.Sleep(5000);
 
-            // Wait.WaitToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[4]/td[1]", 5);
-
-            IWebElement checkLastCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[4]/td[1]"));
-            Assert.That(checkLastCode.Text != "editcode01", "Record not deleted ,Test failed!");
-
-            //if (checkLastCode.Text == "editcode01")
-            //{
-            //    //Console.WriteLine("Record not deleted ,Test failed");
-            //    Assert.Pass("Record not deleted ,Test failed");
-            //}  
-            //else
-            //{
-
-            //    //Console.WriteLine("Record Deleted,Test Passed");
-            //    Assert.Fail("Record Deleted,Test Passed");
-            //}
-
-
         }
-
+        public string deletedcode(IWebDriver driver)
+        {
+            IWebElement checkLastCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return checkLastCode.Text;
+        }
     }
 }

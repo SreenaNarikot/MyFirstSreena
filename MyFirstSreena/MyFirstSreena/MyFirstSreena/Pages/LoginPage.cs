@@ -1,10 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyFirstSreena.Pages
 {
@@ -40,7 +35,24 @@ namespace MyFirstSreena.Pages
             {
                 Assert.Fail("TurnUP Portal login page did not lauch",ex.Message);
             }
+            //Identifying if the user logged in successfully
 
+            //Find the hello hari textbox
+            IWebElement helloHari = driver.FindElement(By.XPath("//*[@id='logoutForm']/ul"));
+            Thread.Sleep(3000);
+
+            Assert.That((helloHari.Text == "Hello hari!"), "User login failed!");
+
+            //if (helloHari.Text == "Hello hari!") 
+            //{
+            //    Assert.Pass("Logged in succesfully");
+            //}
+            //else
+            //{
+            //    Assert.Fail("User Login failed");
+            //}
+
+           
 
 
         }

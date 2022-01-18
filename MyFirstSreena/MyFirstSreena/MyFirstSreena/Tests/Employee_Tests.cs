@@ -15,8 +15,8 @@ namespace MyFirstSreena.Tests
     [Parallelizable]
     class Employee_Tests : CommonDriver
     {
-       
-        [Test, Order(1),Description("Check if the user able to create Employee record with valid data")]
+
+        [Test, Order(1), Description("Check if the user able to create Employee record with valid data")]
         public void createEmployee_Test()
         {
             //Homepage Object initialisation and Definition
@@ -37,22 +37,22 @@ namespace MyFirstSreena.Tests
             homepage.GoToEmployeePage(driver);
 
             //Edit Employee
-            EmployeePage employeePage = new EmployeePage();
-            employeePage.EditEmployee(driver);
+            //EmployeePage employeePage = new EmployeePage();
+            //employeePage.EditEmployee(driver);
 
         }
-        [Test, Order(3), Description("Check if the user able to delete Employee record with valid data")]
+        //[Test, Order(3), Description("Check if the user able to delete Employee record with valid data")]
 
-        public void deleteEmployee_test()
-        {
-            //Homepage Object initialisation and Definition
-            HomePage homepage = new HomePage();
-            homepage.GoToEmployeePage(driver);
+        //public void deleteEmployee_test()
+        //{
+        //    //Homepage Object initialisation and Definition
+        //    HomePage homepage = new HomePage();
+        //    homepage.GoToEmployeePage(driver);
 
-            //delete employee
-            EmployeePage employeePage = new EmployeePage();
-            employeePage.DeleteEmployee(driver);    
+        //    //delete employee
+        //    EmployeePage employeePage = new EmployeePage();
+        //    employeePage.DeleteEmployee(driver);    
 
-        }
+        //}
     }
 }

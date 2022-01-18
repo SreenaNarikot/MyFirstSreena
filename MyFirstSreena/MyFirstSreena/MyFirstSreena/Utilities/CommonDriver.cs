@@ -4,9 +4,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#nullable disable
 
 namespace MyFirstSreena.Utilities
 {
@@ -15,15 +15,15 @@ namespace MyFirstSreena.Utilities
         public IWebDriver driver;
 
         [OneTimeSetUp]
-        public void loginfunction()
+        public void Loginfunction()
         {
 
             // To Open a New Chrome Browser 
            driver = new ChromeDriver();
 
         //LoginPage Object initialisation and defintion
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginSteps(driver);
+        //LoginPage loginPage = new LoginPage();
+        //loginPage.loginSteps(driver);
 
         }
         [OneTimeTearDown]
